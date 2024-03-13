@@ -92,6 +92,7 @@ class _ShopPageState extends State<ShopPage> {
                   },
                 ),),
               ],
+              
             ),
           ),
         ),  

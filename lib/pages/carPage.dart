@@ -17,7 +17,7 @@ class _CartPageState extends State<CartPage> {
     return Consumer<Cart>(builder: (context, value, child) => Column(
       children: [
         Text('My cart'),
-
+        value.getUsercart().isEmpty ? _emptyCart(context):
         Expanded(child: 
         ListView.builder(
           itemCount: value.getUsercart().length,
@@ -26,7 +26,62 @@ class _CartPageState extends State<CartPage> {
             return CartItem(shoe: individualShoe,) ;
           },
         ),)
+        
       ],
     ));  }
 }
 
+
+
+_emptyCart(BuildContext context){
+  return Padding(
+    padding: const EdgeInsets.only(top: 80),
+    child: Center(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12)
+        ),
+        height: MediaQuery.of(context).size.height * 0.6,
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: Center(child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            
+            Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width * 0.6,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12)
+              ),
+              child: Image.asset('assets/images/empty.png', color: Colors.grey,)),
+            Text('No tienes articulos agregados', 
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.grey
+            ),),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: GestureDetector(
+                onTap: (){
+                  
+                },
+                child: Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                  color: Colors.grey),
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Center(child: Text('Ir de compras', style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20
+                  ),)
+                  ),
+                ),
+              ),
+            )
+          ],
+        )),
+      ),
+    ),
+  );
+}
